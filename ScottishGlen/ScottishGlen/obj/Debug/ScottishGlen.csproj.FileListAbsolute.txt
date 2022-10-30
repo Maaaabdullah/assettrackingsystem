@@ -1,0 +1,45 @@
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\bin\Debug\ScottishGlen.exe.config
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\bin\Debug\ScottishGlen.exe
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\bin\Debug\ScottishGlen.pdb
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.csproj.AssemblyReference.cache
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.Form1.resources
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.Properties.Resources.resources
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.csproj.GenerateResource.cache
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.csproj.CoreCompileInputs.cache
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.exe
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.pdb
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\bin\Debug\EntityFramework.dll
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\bin\Debug\EntityFramework.xml
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\enesk\source\repos\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.csproj.CopyComplete
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\bin\Debug\ScottishGlen.exe.config
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\bin\Debug\ScottishGlen.exe
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\bin\Debug\ScottishGlen.pdb
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\bin\Debug\EntityFramework.dll
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\bin\Debug\EntityFramework.xml
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.csproj.AssemblyReference.cache
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.Form1.resources
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.Properties.Resources.resources
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.csproj.GenerateResource.cache
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.csproj.CoreCompileInputs.cache
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.csproj.CopyComplete
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.exe
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.pdb
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\bin\Debug\ScottishGlen.exe.config
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\bin\Debug\ScottishGlen.exe
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\bin\Debug\ScottishGlen.pdb
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\bin\Debug\EntityFramework.dll
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\bin\Debug\EntityFramework.xml
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.csproj.AssemblyReference.cache
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.Form1.resources
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.Properties.Resources.resources
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.csproj.GenerateResource.cache
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.csproj.CoreCompileInputs.cache
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.csproj.CopyComplete
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.exe
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\obj\Debug\ScottishGlen.pdb
