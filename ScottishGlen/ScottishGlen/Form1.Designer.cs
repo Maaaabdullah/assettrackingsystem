@@ -32,6 +32,7 @@ namespace ScottishGlen
             this.initialTitle = new System.Windows.Forms.Label();
             this.addAssetBTN = new System.Windows.Forms.Button();
             this.addAssetPanel = new System.Windows.Forms.Panel();
+            this.iPurchaseDate = new System.Windows.Forms.TextBox();
             this.iname = new System.Windows.Forms.TextBox();
             this.bAdd = new System.Windows.Forms.Button();
             this.iExtraInfo = new System.Windows.Forms.TextBox();
@@ -41,10 +42,10 @@ namespace ScottishGlen
             this.imodel = new System.Windows.Forms.TextBox();
             this.addAssetPanelLabel = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.iPurchaseDate = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.pcinfo = new System.Windows.Forms.Label();
             this.addAssetPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,6 +89,15 @@ namespace ScottishGlen
             this.addAssetPanel.Size = new System.Drawing.Size(294, 390);
             this.addAssetPanel.TabIndex = 2;
             this.addAssetPanel.Visible = false;
+            // 
+            // iPurchaseDate
+            // 
+            this.iPurchaseDate.Location = new System.Drawing.Point(18, 185);
+            this.iPurchaseDate.Name = "iPurchaseDate";
+            this.iPurchaseDate.Size = new System.Drawing.Size(254, 22);
+            this.iPurchaseDate.TabIndex = 14;
+            this.iPurchaseDate.Text = "Purchase Date";
+            this.iPurchaseDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // iname
             // 
@@ -169,15 +179,6 @@ namespace ScottishGlen
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // iPurchaseDate
-            // 
-            this.iPurchaseDate.Location = new System.Drawing.Point(18, 185);
-            this.iPurchaseDate.Name = "iPurchaseDate";
-            this.iPurchaseDate.Size = new System.Drawing.Size(254, 22);
-            this.iPurchaseDate.TabIndex = 14;
-            this.iPurchaseDate.Text = "Purchase Date";
-            this.iPurchaseDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI Semilight", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -208,11 +209,23 @@ namespace ScottishGlen
             this.button3.Text = "DELETE ASSET";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // pcinfo
+            // 
+            this.pcinfo.AutoSize = true;
+            this.pcinfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pcinfo.Location = new System.Drawing.Point(671, 84);
+            this.pcinfo.Name = "pcinfo";
+            this.pcinfo.Size = new System.Drawing.Size(61, 24);
+            this.pcinfo.TabIndex = 6;
+            this.pcinfo.Text = "pcinfo";
+            this.pcinfo.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 497);
+            this.ClientSize = new System.Drawing.Size(994, 497);
+            this.Controls.Add(this.pcinfo);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -247,6 +260,7 @@ namespace ScottishGlen
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label pcinfo;
     }
 }
 
