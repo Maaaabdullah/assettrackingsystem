@@ -51,15 +51,12 @@ namespace ScottishGlen
             // 
             // initialTitle
             // 
-            this.initialTitle.AutoSize = true;
-            this.initialTitle.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.initialTitle.Location = new System.Drawing.Point(56, 24);
+            this.initialTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.initialTitle.Location = new System.Drawing.Point(12, 9);
             this.initialTitle.Name = "initialTitle";
-            this.initialTitle.Size = new System.Drawing.Size(555, 38);
-            this.initialTitle.TabIndex = 0;
-            this.initialTitle.Text = "ScottishGlen - ASSET TRACKING SYSTEM";
-            this.initialTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.initialTitle.Click += new System.EventHandler(this.initialTitle_Click);
+            this.initialTitle.Size = new System.Drawing.Size(589, 50);
+            this.initialTitle.TabIndex = 7;
+            this.initialTitle.Text = "Scottish Glen - Asset Tracker";
             // 
             // addAssetBTN
             // 
@@ -83,7 +80,6 @@ namespace ScottishGlen
             this.addAssetPanel.Controls.Add(this.itype);
             this.addAssetPanel.Controls.Add(this.imanufacturer);
             this.addAssetPanel.Controls.Add(this.imodel);
-            this.addAssetPanel.Controls.Add(this.addAssetPanelLabel);
             this.addAssetPanel.Location = new System.Drawing.Point(307, 76);
             this.addAssetPanel.Name = "addAssetPanel";
             this.addAssetPanel.Size = new System.Drawing.Size(294, 390);
@@ -166,18 +162,10 @@ namespace ScottishGlen
             // 
             // addAssetPanelLabel
             // 
-            this.addAssetPanelLabel.AutoSize = true;
-            this.addAssetPanelLabel.Location = new System.Drawing.Point(15, 13);
+            this.addAssetPanelLabel.Location = new System.Drawing.Point(0, 0);
             this.addAssetPanelLabel.Name = "addAssetPanelLabel";
-            this.addAssetPanelLabel.Size = new System.Drawing.Size(257, 17);
-            this.addAssetPanelLabel.TabIndex = 0;
-            this.addAssetPanelLabel.Text = "Fill the data and submit to add new item";
-            this.addAssetPanelLabel.Click += new System.EventHandler(this.addAssetPanelLabel_Click);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            this.addAssetPanelLabel.Size = new System.Drawing.Size(100, 23);
+            this.addAssetPanelLabel.TabIndex = 8;
             // 
             // button1
             // 
@@ -218,7 +206,6 @@ namespace ScottishGlen
             this.pcinfo.Size = new System.Drawing.Size(61, 24);
             this.pcinfo.TabIndex = 6;
             this.pcinfo.Text = "pcinfo";
-            this.pcinfo.Visible = false;
             // 
             // Form1
             // 
@@ -232,6 +219,7 @@ namespace ScottishGlen
             this.Controls.Add(this.addAssetPanel);
             this.Controls.Add(this.addAssetBTN);
             this.Controls.Add(this.initialTitle);
+            this.Controls.Add(this.addAssetPanelLabel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

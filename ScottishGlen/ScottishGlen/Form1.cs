@@ -26,15 +26,9 @@ namespace ScottishGlen
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            pcinfo.Visible = true;
             pcinfo.Text = "Your current PC stats: \n" + "Name: " + getName() + "\n"
                 + "Model: " + getModel() + "\n" + "Manufacturer: " + getManu() + "\n"
                 + "IP Address: " + getAddress() + "\n";
-        }
-
-        private void initialTitle_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void addAssetBTN_Click(object sender, EventArgs e)
@@ -43,11 +37,7 @@ namespace ScottishGlen
            
         }
 
-       
-
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-        }
+      
 
         private void submitNewAssetForm_Click(object sender, EventArgs e)
         {
@@ -78,13 +68,8 @@ namespace ScottishGlen
 
         }
 
-        private void addAssetPanelLabel_Click(object sender, EventArgs e)
-        {
 
-        }
-
-
-        //Name
+        //Get Name Function
         public string getName()
         {
             string name;
@@ -104,7 +89,7 @@ namespace ScottishGlen
         }
 
 
-        //FIXME MEModel
+        //Get Model Function
 
         public string getModel()
         {
@@ -125,7 +110,7 @@ namespace ScottishGlen
         }
 
 
-        //Manufacturer
+        //Get Manufacturer Function
         public string getManu()
         {
 
@@ -147,11 +132,10 @@ namespace ScottishGlen
             
         }
 
-        // IP ADDRESS
+        //Get IP ADDRESS Function
 
         public string getAddress()
         {
-            //Function to get ip address
 
             // Get the Name of HOST  
             string hostName = Dns.GetHostName();
@@ -167,14 +151,6 @@ namespace ScottishGlen
             {
                 return "IP Address: Uknown";
             }
-
-           
-
-
         }
-
-
-
-
     }
 }
