@@ -32,20 +32,31 @@ namespace ScottishGlen
             this.initialTitle = new System.Windows.Forms.Label();
             this.addAssetBTN = new System.Windows.Forms.Button();
             this.addAssetPanel = new System.Windows.Forms.Panel();
+            this.deleteBtn = new System.Windows.Forms.Button();
+            this.updatebtn = new System.Windows.Forms.Button();
             this.iPurchaseDate = new System.Windows.Forms.TextBox();
             this.iname = new System.Windows.Forms.TextBox();
-            this.bAdd = new System.Windows.Forms.Button();
+            this.addbutton = new System.Windows.Forms.Button();
             this.iExtraInfo = new System.Windows.Forms.TextBox();
             this.iIpAddress = new System.Windows.Forms.TextBox();
             this.itype = new System.Windows.Forms.TextBox();
             this.imanufacturer = new System.Windows.Forms.TextBox();
             this.imodel = new System.Windows.Forms.TextBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Model = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Manu = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.IpAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PurchaseDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ExtraInfo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.addAssetPanelLabel = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.pcinfo = new System.Windows.Forms.Label();
+            this.rowInfotxt = new System.Windows.Forms.Label();
             this.addAssetPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,19 +83,41 @@ namespace ScottishGlen
             // addAssetPanel
             // 
             this.addAssetPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.addAssetPanel.Controls.Add(this.deleteBtn);
+            this.addAssetPanel.Controls.Add(this.updatebtn);
             this.addAssetPanel.Controls.Add(this.iPurchaseDate);
             this.addAssetPanel.Controls.Add(this.iname);
-            this.addAssetPanel.Controls.Add(this.bAdd);
+            this.addAssetPanel.Controls.Add(this.addbutton);
             this.addAssetPanel.Controls.Add(this.iExtraInfo);
             this.addAssetPanel.Controls.Add(this.iIpAddress);
             this.addAssetPanel.Controls.Add(this.itype);
             this.addAssetPanel.Controls.Add(this.imanufacturer);
             this.addAssetPanel.Controls.Add(this.imodel);
-            this.addAssetPanel.Location = new System.Drawing.Point(307, 76);
+            this.addAssetPanel.Location = new System.Drawing.Point(296, 84);
             this.addAssetPanel.Name = "addAssetPanel";
             this.addAssetPanel.Size = new System.Drawing.Size(294, 390);
             this.addAssetPanel.TabIndex = 2;
             this.addAssetPanel.Visible = false;
+            // 
+            // deleteBtn
+            // 
+            this.deleteBtn.Location = new System.Drawing.Point(83, 328);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(112, 40);
+            this.deleteBtn.TabIndex = 16;
+            this.deleteBtn.Text = "Delete";
+            this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
+            // 
+            // updatebtn
+            // 
+            this.updatebtn.Location = new System.Drawing.Point(83, 328);
+            this.updatebtn.Name = "updatebtn";
+            this.updatebtn.Size = new System.Drawing.Size(112, 40);
+            this.updatebtn.TabIndex = 15;
+            this.updatebtn.Text = "Update";
+            this.updatebtn.UseVisualStyleBackColor = true;
+            this.updatebtn.Click += new System.EventHandler(this.updatebtn_Click);
             // 
             // iPurchaseDate
             // 
@@ -104,15 +137,15 @@ namespace ScottishGlen
             this.iname.Text = "Name";
             this.iname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // bAdd
+            // addbutton
             // 
-            this.bAdd.Location = new System.Drawing.Point(83, 328);
-            this.bAdd.Name = "bAdd";
-            this.bAdd.Size = new System.Drawing.Size(112, 40);
-            this.bAdd.TabIndex = 8;
-            this.bAdd.Text = "Add";
-            this.bAdd.UseVisualStyleBackColor = true;
-            this.bAdd.Click += new System.EventHandler(this.submitNewAssetForm_Click);
+            this.addbutton.Location = new System.Drawing.Point(83, 328);
+            this.addbutton.Name = "addbutton";
+            this.addbutton.Size = new System.Drawing.Size(112, 40);
+            this.addbutton.TabIndex = 8;
+            this.addbutton.Text = "Add";
+            this.addbutton.UseVisualStyleBackColor = true;
+            this.addbutton.Click += new System.EventHandler(this.submitNewAssetForm_Click);
             // 
             // iExtraInfo
             // 
@@ -160,6 +193,57 @@ namespace ScottishGlen
             this.imodel.Text = "Model";
             this.imodel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Name,
+            this.Model,
+            this.Manu,
+            this.Type,
+            this.IpAddress,
+            this.PurchaseDate,
+            this.ExtraInfo});
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(628, 84);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(407, 287);
+            this.listView1.TabIndex = 9;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // Name
+            // 
+            this.Name.Text = "Name";
+            // 
+            // Model
+            // 
+            this.Model.Text = "Model";
+            // 
+            // Manu
+            // 
+            this.Manu.Text = "Manufacturer";
+            this.Manu.Width = 89;
+            // 
+            // Type
+            // 
+            this.Type.Text = "Type";
+            // 
+            // IpAddress
+            // 
+            this.IpAddress.Text = "IP Address";
+            this.IpAddress.Width = 89;
+            // 
+            // PurchaseDate
+            // 
+            this.PurchaseDate.Text = "Purchase Date";
+            this.PurchaseDate.Width = 113;
+            // 
+            // ExtraInfo
+            // 
+            this.ExtraInfo.Text = "ExtraInformation";
+            this.ExtraInfo.Width = 110;
+            // 
             // addAssetPanelLabel
             // 
             this.addAssetPanelLabel.Location = new System.Drawing.Point(0, 0);
@@ -176,6 +260,7 @@ namespace ScottishGlen
             this.button1.TabIndex = 3;
             this.button1.Text = "VIEW ASSET";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -186,6 +271,7 @@ namespace ScottishGlen
             this.button2.TabIndex = 4;
             this.button2.Text = "UPDATE ASSET";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -196,22 +282,36 @@ namespace ScottishGlen
             this.button3.TabIndex = 5;
             this.button3.Text = "DELETE ASSET";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // pcinfo
             // 
             this.pcinfo.AutoSize = true;
             this.pcinfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pcinfo.Location = new System.Drawing.Point(671, 84);
+            this.pcinfo.Location = new System.Drawing.Point(20, 398);
             this.pcinfo.Name = "pcinfo";
             this.pcinfo.Size = new System.Drawing.Size(61, 24);
             this.pcinfo.TabIndex = 6;
             this.pcinfo.Text = "pcinfo";
             // 
+            // rowInfotxt
+            // 
+            this.rowInfotxt.AutoSize = true;
+            this.rowInfotxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rowInfotxt.Location = new System.Drawing.Point(640, 398);
+            this.rowInfotxt.Name = "rowInfotxt";
+            this.rowInfotxt.Size = new System.Drawing.Size(71, 24);
+            this.rowInfotxt.TabIndex = 10;
+            this.rowInfotxt.Text = "rowInfo";
+            this.rowInfotxt.Click += new System.EventHandler(this.label1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(994, 497);
+            this.ClientSize = new System.Drawing.Size(1367, 678);
+            this.Controls.Add(this.rowInfotxt);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.pcinfo);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -220,7 +320,7 @@ namespace ScottishGlen
             this.Controls.Add(this.addAssetBTN);
             this.Controls.Add(this.initialTitle);
             this.Controls.Add(this.addAssetPanelLabel);
-            this.Name = "Form1";
+           // this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.addAssetPanel.ResumeLayout(false);
@@ -242,13 +342,24 @@ namespace ScottishGlen
         private System.Windows.Forms.TextBox imanufacturer;
         private System.Windows.Forms.TextBox imodel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button bAdd;
+        private System.Windows.Forms.Button addbutton;
         private System.Windows.Forms.TextBox iname;
         private System.Windows.Forms.TextBox iPurchaseDate;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label pcinfo;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader Name;
+        private System.Windows.Forms.ColumnHeader Model;
+        private System.Windows.Forms.ColumnHeader Manu;
+        private System.Windows.Forms.ColumnHeader Type;
+        private System.Windows.Forms.ColumnHeader IpAddress;
+        private System.Windows.Forms.ColumnHeader PurchaseDate;
+        private System.Windows.Forms.ColumnHeader ExtraInfo;
+        private System.Windows.Forms.Label rowInfotxt;
+        private System.Windows.Forms.Button deleteBtn;
+        private System.Windows.Forms.Button updatebtn;
     }
 }
 

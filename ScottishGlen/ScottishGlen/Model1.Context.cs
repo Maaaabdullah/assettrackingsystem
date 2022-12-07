@@ -15,6 +15,7 @@ namespace ScottishGlen
     
     public partial class mssql2002690Entities3 : DbContext
     {
+
         public mssql2002690Entities3()
             : base("name=mssql2002690Entities3")
         {
