@@ -19,11 +19,15 @@ namespace ScottishGlen
         static mssql2002690Entities3 scGlenDB = new mssql2002690Entities3();
 
 
-        List<scottishGlen> AllData = new List<scottishGlen>();// empty list of All Data from DB
+        List<scottishGlen> AllData = new List<scottishGlen>();// empty list of Hardware All Data from DB
+
+        List<scottishGlenSoftware> AllSWData = new List<scottishGlenSoftware>();// empty list of software All Data from DB
 
 
         IQueryable<scottishGlen> AllDataa = from d in scGlenDB.scottishGlens select d;
 
+
+        IQueryable<scottishGlenSoftware> AllSWDataa = from d in scGlenDB.scottishGlenSoftwares select d;
 
 
 
@@ -51,6 +55,21 @@ namespace ScottishGlen
             ListInformationFromTable(AllData);
 
 
+        }
+
+        private void UpdateSWListView()
+        {
+            AllSWData.Clear();
+
+            IQueryable<scottishGlenSoftware> AllSWDataa = from d in scGlenDB.scottishGlenSoftwares select d;
+
+            foreach (var data in AllSWDataa)
+            {
+                AllSWData.Add(data);
+            }
+
+            ListSWInformationFromTable(AllSWData);
+
 
         }
 
@@ -60,7 +79,8 @@ namespace ScottishGlen
                 + "Model: " + getModel() + "\n" + "Manufacturer: " + getManu() + "\n"
                 + "IP Address: " + getAddress() + "\n"
                 + "Operating System: " + getOSName() + "\n"
-                + "Operating System Version: " + getOSVersion() + "\n";
+                + "Operating System Version: " + getOSVersion() + "\n"
+                + "Operating System Manufcaturer: " + getOSManu() + "\n";
         }
 
         private void addAssetBTN_Click(object sender, EventArgs e)
@@ -69,11 +89,11 @@ namespace ScottishGlen
 
             setButtonAccoprdingly("Add");
 
-            iname.Text = "System Name";
-            imodel.Text = "Model";
-            imanufacturer.Text = "Manufacturer";
+            iname.Text = getName();
+            imodel.Text = getModel();
+            imanufacturer.Text = getManu();
             itype.Text = "Type";
-            iIpAddress.Text = "IP Address";
+            iIpAddress.Text = getAddress();
             iPurchaseDate.Text = "Purchase Date";
             iExtraInfo.Text = "Extra Information";
 
@@ -105,6 +125,33 @@ namespace ScottishGlen
                     addbutton.Visible = false;
                     deleteBtn.Visible = false;
                     updatebtn.Visible = false;
+                    break;
+            }
+        }
+
+        private void setButtonSWAccoprdingly(string button)
+        {
+            switch (button)
+            {
+                case "Add":
+                    addbuttonsw.Visible = true;
+                    deleteBtnsw.Visible = false;
+                    updatebtnsw.Visible = false;
+                    break;
+                case "Update":
+                    addbuttonsw.Visible = false;
+                    deleteBtnsw.Visible = false;
+                    updatebtnsw.Visible = true;
+                    break;
+                case "Delete":
+                    addbuttonsw.Visible = false;
+                    deleteBtnsw.Visible = true;
+                    updatebtnsw.Visible = false;
+                    break;
+                default:
+                    addbuttonsw.Visible = false;
+                    deleteBtnsw.Visible = false;
+                    updatebtnsw.Visible = false;
                     break;
             }
         }
@@ -244,6 +291,16 @@ namespace ScottishGlen
 
         }
 
+        //get OS Manufcaturer
+        public string getOSManu()
+        {
+            OperatingSystem os = Environment.OSVersion;
+
+            return os.ToString();
+
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             addAssetPanel.Visible = true;
@@ -300,6 +357,37 @@ namespace ScottishGlen
                 }
 
                 listView1.Items.Add(newitem);
+            }
+        }
+
+
+
+        //List Software all info from DB
+        void ListSWInformationFromTable(List<scottishGlenSoftware> Glen)
+        {
+            listView2.Items.Clear();
+            foreach (var g in Glen)
+            {
+                ListViewItem newitem = new ListViewItem(g.id.ToString(), 0);
+
+                //Check if data is null, to prevent errors
+
+                if (g.operatingSystemName != null)
+                {
+                    newitem.SubItems.Add(g.operatingSystemName.ToString());
+                }
+
+                if (g.version != null)
+                {
+                    newitem.SubItems.Add(g.version.ToString());
+                }
+
+                if (g.manufacturer != null)
+                {
+                    newitem.SubItems.Add(g.manufacturer.ToString());
+                }
+
+                listView2.Items.Add(newitem);
             }
         }
 
@@ -361,6 +449,23 @@ namespace ScottishGlen
             }
         }
 
+
+        private void DisplaySWSelectedItemInField()
+        {
+            if (listView2.SelectedIndices.Count > 0)
+            {
+
+                int i = (int.Parse(listView2.SelectedItems[0].Text));
+                scottishGlenSoftware inforlookup = (from p in scGlenDB.scottishGlenSoftwares where p.id == i select p).FirstOrDefault<scottishGlenSoftware>();
+
+                iname.Text = inforlookup.operatingSystemName;
+                imodel.Text = inforlookup.version.ToString();
+                imanufacturer.Text = inforlookup.manufacturer.ToString();
+
+            }
+        }
+
+
         private void button3_Click(object sender, EventArgs e)
         {
             setButtonAccoprdingly("Delete");
@@ -406,6 +511,134 @@ namespace ScottishGlen
             }
 
             UpdateListView();
+        }
+
+        //Add Software INFO
+        private void button4_Click(object sender, EventArgs e)
+        {
+            addAssetPanel2.Visible = true;
+
+            setButtonSWAccoprdingly("Add");
+
+            inamesw.Text = getOSName();
+            iversionsw.Text = getOSVersion();
+            imanusw.Text = getOSManu();
+
+            UpdateSWListView();
+        }
+
+        //View Software INFO
+        private void button5_Click(object sender, EventArgs e)
+        {
+            addAssetPanel2.Visible = true;
+            ListSWInformationFromTable(AllSWData);
+            UpdateSWListView();
+        }
+
+        //Update Software INFO
+        private void button10_Click(object sender, EventArgs e)
+        {
+            //Edit Item
+            UpdateSWListView();
+            setButtonSWAccoprdingly("Update");
+            addAssetPanel2.Visible = true;
+            DisplaySWSelectedItemInField();
+        }
+
+        //Delete Software INFO
+        private void button9_Click(object sender, EventArgs e)
+        {
+            setButtonSWAccoprdingly("Delete");
+            UpdateSWListView();
+            addAssetPanel2.Visible = true;
+        }
+
+        //Addtrigger Button
+        private void button8_Click(object sender, EventArgs e)
+        {
+            scottishGlenSoftware newAsset = new scottishGlenSoftware();
+
+            newAsset.operatingSystemName = inamesw.Text;
+            newAsset.version = iversionsw.Text;
+            newAsset.manufacturer = imanusw.Text;
+
+
+            scGlenDB.scottishGlenSoftwares.Add(newAsset);
+
+            scGlenDB.SaveChanges();
+
+
+            MessageBox.Show("You have successfully added an asset");
+
+            iname.Text = "OS Name";
+            imodel.Text = "OS Version";
+            imanufacturer.Text = "OS Manufacturer";
+           
+
+            UpdateSWListView();
+        }
+
+
+        //Update Trigger Button
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (listView2.SelectedIndices.Count > 0)
+            {
+                int i = (int.Parse(listView2.SelectedItems[0].Text));
+                scottishGlenSoftware inforlookup = (from p in scGlenDB.scottishGlenSoftwares where p.id == i select p).FirstOrDefault<scottishGlenSoftware>();
+
+                inforlookup.operatingSystemName = inamesw.Text;
+                inforlookup.version = iversionsw.Text;
+                inforlookup.manufacturer = imanusw.Text;
+
+
+
+                scGlenDB.SaveChanges();
+
+                UpdateSWListView();
+
+                MessageBox.Show("You have successfully updated an asset");
+            }
+            else
+            {
+                MessageBox.Show("You must select an asset");
+            }
+        }
+
+        //Delete Trigger Button
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (listView2.SelectedIndices.Count > 0)
+            {
+
+                int i = (int.Parse(listView2.SelectedItems[0].Text));
+                scottishGlenSoftware productLookUp = (from p in scGlenDB.scottishGlenSoftwares
+                                              where p.id == i
+                                              select p).FirstOrDefault<scottishGlenSoftware>();
+                scGlenDB.scottishGlenSoftwares.Remove(productLookUp);
+                scGlenDB.SaveChanges();
+
+                MessageBox.Show("You have successfully deleted an asset");
+
+            }
+            else
+            {
+                MessageBox.Show("You must select an asset");
+            }
+
+            UpdateSWListView();
+        }
+
+        private void hardwarebtn_Click(object sender, EventArgs e)
+        {
+            hardwarePanel.Visible = true;
+            softwarePanel.Visible = false;
+        }
+
+        private void softwarebtn_Click(object sender, EventArgs e)
+        {
+            hardwarePanel.Visible = false;
+            softwarePanel.Visible = true;
         }
     }
 }

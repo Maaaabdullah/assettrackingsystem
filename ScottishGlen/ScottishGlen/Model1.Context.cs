@@ -15,7 +15,6 @@ namespace ScottishGlen
     
     public partial class mssql2002690Entities3 : DbContext
     {
-
         public mssql2002690Entities3()
             : base("name=mssql2002690Entities3")
         {
@@ -27,5 +26,6 @@ namespace ScottishGlen
         }
     
         public virtual DbSet<scottishGlen> scottishGlens { get; set; }
+        public virtual DbSet<scottishGlenSoftware> scottishGlenSoftwares { get; set; }
     }
 }

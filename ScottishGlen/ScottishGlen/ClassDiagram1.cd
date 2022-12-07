@@ -6,14 +6,14 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAgAIIEACAEAgAQAUCASAACgAA6ABAAACQkAokAAAA=</HashCode>
+      <HashCode>ACA1AIYFADAEAnBQAcCCTAyCg8l6QBQA0XwvB40CyhI=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ScottishGlen.mssql2002690Entities3">
     <Position X="4" Y="1.75" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAABAA=</HashCode>
       <FileName>Model1.Context.cs</FileName>
     </TypeIdentifier>
   </Class>

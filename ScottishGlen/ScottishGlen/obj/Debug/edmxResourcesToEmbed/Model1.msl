@@ -15,5 +15,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="scottishGlenSoftwares">
+      <EntityTypeMapping TypeName="mssql2002690Model.scottishGlenSoftware">
+        <MappingFragment StoreEntitySet="scottishGlenSoftware">
+          <ScalarProperty Name="manufacturer" ColumnName="manufacturer" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="operatingSystemName" ColumnName="operatingSystemName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="mssql2002690Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="mssql2002690Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="scottishGlen">
           <Key>
             <PropertyRef Name="id" />
@@ -18,11 +18,20 @@
           <Property Name="purchaseDate" Type="varchar" MaxLength="50" />
           <Property Name="extraInfo" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="scottishGlenSoftware">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="operatingSystemName" Type="varchar" MaxLength="50" />
+          <Property Name="version" Type="varchar" MaxLength="50" />
+          <Property Name="manufacturer" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityContainer Name="mssql2002690ModelStoreContainer">
           <EntitySet Name="scottishGlen" EntityType="Self.scottishGlen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="scottishGlenSoftware" EntityType="Self.scottishGlenSoftware" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mssql2002690Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -41,7 +50,17 @@
         </EntityType>
         <EntityContainer Name="mssql2002690Entities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="scottishGlens" EntityType="Self.scottishGlen" />
+          <EntitySet Name="scottishGlenSoftwares" EntityType="mssql2002690Model.scottishGlenSoftware" />
         </EntityContainer>
+        <EntityType Name="scottishGlenSoftware">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="operatingSystemName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="version" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -59,6 +78,16 @@
                 <ScalarProperty Name="ipAddress" ColumnName="ipAddress" />
                 <ScalarProperty Name="purchaseDate" ColumnName="purchaseDate" />
                 <ScalarProperty Name="extraInfo" ColumnName="extraInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scottishGlenSoftwares">
+            <EntityTypeMapping TypeName="mssql2002690Model.scottishGlenSoftware">
+              <MappingFragment StoreEntitySet="scottishGlenSoftware">
+                <ScalarProperty Name="manufacturer" ColumnName="manufacturer" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="operatingSystemName" ColumnName="operatingSystemName" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

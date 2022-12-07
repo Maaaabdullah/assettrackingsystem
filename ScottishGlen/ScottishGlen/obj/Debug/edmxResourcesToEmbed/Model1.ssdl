@@ -13,7 +13,17 @@
     <Property Name="purchaseDate" Type="varchar" MaxLength="50" />
     <Property Name="extraInfo" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="scottishGlenSoftware">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="operatingSystemName" Type="varchar" MaxLength="50" />
+    <Property Name="version" Type="varchar" MaxLength="50" />
+    <Property Name="manufacturer" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityContainer Name="mssql2002690ModelStoreContainer">
     <EntitySet Name="scottishGlen" EntityType="Self.scottishGlen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="scottishGlenSoftware" EntityType="Self.scottishGlenSoftware" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>
