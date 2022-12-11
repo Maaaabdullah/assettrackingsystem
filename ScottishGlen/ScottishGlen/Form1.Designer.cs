@@ -69,6 +69,7 @@ namespace ScottishGlen
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button5 = new System.Windows.Forms.Button();
             this.addAssetPanel2 = new System.Windows.Forms.Panel();
             this.hdwname = new System.Windows.Forms.TextBox();
@@ -115,7 +116,6 @@ namespace ScottishGlen
             this.newpass = new System.Windows.Forms.TextBox();
             this.currentps = new System.Windows.Forms.TextBox();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.addAssetPanel.SuspendLayout();
             this.hardwarePanel.SuspendLayout();
             this.softwarePanel.SuspendLayout();
@@ -405,9 +405,9 @@ namespace ScottishGlen
             this.hardwarePanel.Controls.Add(this.button1);
             this.hardwarePanel.Controls.Add(this.button3);
             this.hardwarePanel.Controls.Add(this.button2);
-            this.hardwarePanel.Location = new System.Drawing.Point(857, 337);
+            this.hardwarePanel.Location = new System.Drawing.Point(11, 112);
             this.hardwarePanel.Name = "hardwarePanel";
-            this.hardwarePanel.Size = new System.Drawing.Size(1097, 461);
+            this.hardwarePanel.Size = new System.Drawing.Size(1245, 461);
             this.hardwarePanel.TabIndex = 11;
             this.hardwarePanel.Visible = false;
             // 
@@ -422,7 +422,7 @@ namespace ScottishGlen
             this.softwarePanel.Controls.Add(this.button10);
             this.softwarePanel.Location = new System.Drawing.Point(20, 95);
             this.softwarePanel.Name = "softwarePanel";
-            this.softwarePanel.Size = new System.Drawing.Size(1097, 393);
+            this.softwarePanel.Size = new System.Drawing.Size(1241, 393);
             this.softwarePanel.TabIndex = 12;
             this.softwarePanel.Visible = false;
             // 
@@ -477,6 +477,10 @@ namespace ScottishGlen
             // 
             this.columnHeader3.Text = "OS Manufacturer";
             this.columnHeader3.Width = 246;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Hardware Name";
             // 
             // button5
             // 
@@ -615,12 +619,13 @@ namespace ScottishGlen
             // 
             // mmpanel
             // 
+            this.mmpanel.Controls.Add(this.hardwarePanel);
             this.mmpanel.Controls.Add(this.accountbtn);
             this.mmpanel.Controls.Add(this.softwarebtn);
             this.mmpanel.Controls.Add(this.softwarePanel);
             this.mmpanel.Controls.Add(this.hardwarebtn);
             this.mmpanel.Controls.Add(this.pcinfo);
-            this.mmpanel.Location = new System.Drawing.Point(20, 452);
+            this.mmpanel.Location = new System.Drawing.Point(3, 52);
             this.mmpanel.Name = "mmpanel";
             this.mmpanel.Size = new System.Drawing.Size(1294, 749);
             this.mmpanel.TabIndex = 15;
@@ -956,16 +961,11 @@ namespace ScottishGlen
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
             // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Hardware Name";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1683, 1055);
-            this.Controls.Add(this.hardwarePanel);
             this.Controls.Add(this.changePassPanel);
             this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.registerPanel);
@@ -973,7 +973,7 @@ namespace ScottishGlen
             this.Controls.Add(this.addAssetPanelLabel);
             this.Controls.Add(this.AccountPanel);
             this.Controls.Add(this.mmpanel);
-           // this.Name = "Form1";
+            this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.addAssetPanel.ResumeLayout(false);

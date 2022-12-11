@@ -11,7 +11,6 @@ using System.IO;
 using System.Management;
 using System.Net;
 using System.Security.Cryptography;
-using BCrypt.Net;
 using RestSharp;
 
 namespace ScottishGlen
