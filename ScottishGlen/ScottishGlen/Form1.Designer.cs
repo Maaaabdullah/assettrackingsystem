@@ -973,7 +973,7 @@ namespace ScottishGlen
             this.Controls.Add(this.addAssetPanelLabel);
             this.Controls.Add(this.AccountPanel);
             this.Controls.Add(this.mmpanel);
-            this.Name = "Form1";
+            //this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.addAssetPanel.ResumeLayout(false);

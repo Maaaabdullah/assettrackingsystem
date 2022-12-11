@@ -33,3 +33,7 @@ C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Pr
 C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\obj\Release\ScottishGlen.csproj.CopyComplete
 C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\obj\Release\ScottishGlen.exe
 C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\obj\Release\ScottishGlen.pdb
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\bin\Release\Newtonsoft.Json.dll
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\bin\Release\System.ServiceModel.Syndication.dll
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\bin\Release\Newtonsoft.Json.xml
+C:\Users\Mohi\Desktop\University\University 3rd Year\307 Software Engineering Practice\Proto Repo\assettrackingsystem\ScottishGlen\ScottishGlen\bin\Release\System.ServiceModel.Syndication.xml

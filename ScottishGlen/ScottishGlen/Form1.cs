@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 using System.Management;
 using System.Net;
 using System.Security.Cryptography;
+using System.ServiceModel.Syndication;
+using System.Xml;
 using RestSharp;
 
 namespace ScottishGlen
 {
+
     public partial class Form1 : Form
     {
 
@@ -883,8 +883,8 @@ namespace ScottishGlen
 
         //Log In
         private void loginBtn_Click(object sender, EventArgs e)
-        {
-            RequestResponse();
+        { 
+
             scottishGlenAccount logged = (from c in scGlenDB.scottishGlenAccounts
                                     where c.username == usernameLog.Text
                                     select c).FirstOrDefault<scottishGlenAccount>();
@@ -1084,11 +1084,25 @@ namespace ScottishGlen
         public void RequestResponse()
         {
 
-            var client = new RestClient("https://services.nvd.nist.gov/b28aff68-8243-4ed0-b73d-fea61907afed/rest/json/cves/2.0");
+            //This function will be used for testing and working checking vulnerabilities via NIST National Vulnerability Database (NVD)
+
+
+            var client = new RestClient("https://services.nvd.nist.gov/rest/json/cves/2.0");
 
             var response = client.Execute(new RestRequest());
 
-            MessageBox.Show(response.Content);
+            // MessageBox.Show(response.Content);
+
+
+          //  Console.WriteLine($"hmm { response?.totalResults}");
+           // Console.Write(response.Content.ToString());
+
+
+            //var url = "https://services.nvd.nist.gov/rest/json/source/2.0";
+            //var reader = XmlReader.Create(url);
+            //var feed = SyndicationFeed.Load(reader);
+
+            //MessageBox.Show(feed.Items.FirstOrDefault().Title.ToString());
 
 
         }
