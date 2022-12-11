@@ -27,5 +27,6 @@ namespace ScottishGlen
     
         public virtual DbSet<scottishGlen> scottishGlens { get; set; }
         public virtual DbSet<scottishGlenSoftware> scottishGlenSoftwares { get; set; }
+        public virtual DbSet<scottishGlenAccount> scottishGlenAccounts { get; set; }
     }
 }

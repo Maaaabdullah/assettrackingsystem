@@ -10,6 +10,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="softwareId" Type="int" />
           <Property Name="name" Type="varchar" MaxLength="50" />
           <Property Name="model" Type="varchar" MaxLength="50" />
           <Property Name="manufacturer" Type="varchar" MaxLength="50" />
@@ -18,17 +19,27 @@
           <Property Name="purchaseDate" Type="varchar" MaxLength="50" />
           <Property Name="extraInfo" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="scottishGlenAccount">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="text" Nullable="false" />
+        </EntityType>
         <EntityType Name="scottishGlenSoftware">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hardwareName" Type="varchar" MaxLength="50" />
           <Property Name="operatingSystemName" Type="varchar" MaxLength="50" />
           <Property Name="version" Type="varchar" MaxLength="50" />
           <Property Name="manufacturer" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="mssql2002690ModelStoreContainer">
           <EntitySet Name="scottishGlen" EntityType="Self.scottishGlen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="scottishGlenAccount" EntityType="Self.scottishGlenAccount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scottishGlenSoftware" EntityType="Self.scottishGlenSoftware" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -47,10 +58,12 @@
           <Property Name="ipAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="purchaseDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="extraInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="softwareId" Type="Int32" />
         </EntityType>
         <EntityContainer Name="mssql2002690Entities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="scottishGlens" EntityType="Self.scottishGlen" />
           <EntitySet Name="scottishGlenSoftwares" EntityType="mssql2002690Model.scottishGlenSoftware" />
+          <EntitySet Name="scottishGlenAccounts" EntityType="mssql2002690Model.scottishGlenAccount" />
         </EntityContainer>
         <EntityType Name="scottishGlenSoftware">
           <Key>
@@ -60,6 +73,15 @@
           <Property Name="operatingSystemName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="version" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="hardwareName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="scottishGlenAccount">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -70,6 +92,7 @@
           <EntitySetMapping Name="scottishGlens">
             <EntityTypeMapping TypeName="mssql2002690Model.scottishGlen">
               <MappingFragment StoreEntitySet="scottishGlen">
+                <ScalarProperty Name="softwareId" ColumnName="softwareId" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="model" ColumnName="model" />
@@ -84,10 +107,20 @@
           <EntitySetMapping Name="scottishGlenSoftwares">
             <EntityTypeMapping TypeName="mssql2002690Model.scottishGlenSoftware">
               <MappingFragment StoreEntitySet="scottishGlenSoftware">
+                <ScalarProperty Name="hardwareName" ColumnName="hardwareName" />
                 <ScalarProperty Name="manufacturer" ColumnName="manufacturer" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="operatingSystemName" ColumnName="operatingSystemName" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scottishGlenAccounts">
+            <EntityTypeMapping TypeName="mssql2002690Model.scottishGlenAccount">
+              <MappingFragment StoreEntitySet="scottishGlenAccount">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

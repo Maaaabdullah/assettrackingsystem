@@ -18,5 +18,6 @@ namespace ScottishGlen
         public string operatingSystemName { get; set; }
         public string version { get; set; }
         public string manufacturer { get; set; }
+        public string hardwareName { get; set; }
     }
 }

@@ -22,5 +22,6 @@ namespace ScottishGlen
         public string ipAddress { get; set; }
         public string purchaseDate { get; set; }
         public string extraInfo { get; set; }
+        public Nullable<int> softwareId { get; set; }
     }
 }

@@ -7,6 +7,7 @@
       <Diagram DiagramId="95ae16331ad04551a1c7db6f047c95e8" Name="Diagram1">
         <EntityTypeShape EntityType="mssql2002690Model.scottishGlen" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mssql2002690Model.scottishGlenSoftware" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="mssql2002690Model.scottishGlenAccount" Width="1.5" PointX="5.75" PointY="1.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
