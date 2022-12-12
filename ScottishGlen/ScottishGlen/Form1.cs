@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.ServiceModel.Syndication;
 using System.Xml;
 using RestSharp;
+using BCrypt.Net;
 
 namespace ScottishGlen
 {
@@ -26,10 +27,10 @@ namespace ScottishGlen
         List<scottishGlenSoftware> AllSWData = new List<scottishGlenSoftware>();// empty list of software All Data from DB
 
 
-        IQueryable<scottishGlen> AllDataa = from d in scGlenDB.scottishGlens select d;
+        IQueryable<scottishGlen> AllDataa = from d in scGlenDB.scottishGlens select d; //query with HW data
 
 
-        IQueryable<scottishGlenSoftware> AllSWDataa = from d in scGlenDB.scottishGlenSoftwares select d;
+        IQueryable<scottishGlenSoftware> AllSWDataa = from d in scGlenDB.scottishGlenSoftwares select d; //query with sw data
 
 
         scottishGlenAccount loggedinAccount = null;
@@ -41,20 +42,7 @@ namespace ScottishGlen
 
         public Form1()
         {
-            //if(loggedinAccount != null)
-            //{
-            //  //  mmpanel.Visible = true;
-            //    loginPanel.Visible = false;
-            //    registerPanel.Visible = false;
-            //}
-            //else
-            //{
-            //   // mmpanel.Visible = false;
-            //    loginPanel.Visible = true;
-            //    registerPanel.Visible = true;
-            //}
-
-
+            //Init
             InitializeComponent();
             setButtonAccoprdingly("");
             UpdateListView();
@@ -67,6 +55,7 @@ namespace ScottishGlen
 
         private void verificateAccouting()
         {
+            //verificate account
             if(loggedinAccount != null)
             {
                 mmpanel.Visible = true;
@@ -77,15 +66,18 @@ namespace ScottishGlen
 
         private void UpdateListView()
         {
+            //Update HW Assets list
             AllData.Clear();
 
             IQueryable<scottishGlen> AllDataa = from d in scGlenDB.scottishGlens select d;
 
+            //add to list
             foreach (var data in AllDataa)
             {
                 AllData.Add(data);
             }
 
+            //display at listview (refresh)
             ListInformationFromTable(AllData);
 
 
@@ -93,6 +85,28 @@ namespace ScottishGlen
 
         private void UpdateSWListView()
         {
+            //Update SW Assets list
+
+            AllSWData.Clear();
+
+            IQueryable<scottishGlenSoftware> AllSWDataa = from d in scGlenDB.scottishGlenSoftwares select d;
+
+            //add to list
+            foreach (var data in AllSWDataa)
+            {
+                AllSWData.Add(data);
+            }
+
+            //display at listview (refresh)
+            ListSWInformationFromTable(AllSWData);
+
+
+        }
+
+        private void UpdateSWLNVDistView()
+        {
+            //display at NVD section (if user wants to check against NVD a specific stored asset)
+
             AllSWData.Clear();
 
             IQueryable<scottishGlenSoftware> AllSWDataa = from d in scGlenDB.scottishGlenSoftwares select d;
@@ -102,13 +116,16 @@ namespace ScottishGlen
                 AllSWData.Add(data);
             }
 
-            ListSWInformationFromTable(AllSWData);
+            //display at listview (refresh)
+            ListSWInformationFromTableNVD(AllSWData);
 
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            //State current pc stats
             pcinfo.Text = "Your current PC stats: \n" + "Name: " + getName() + "\n"
                 + "Model: " + getModel() + "\n" + "Manufacturer: " + getManu() + "\n"
                 + "IP Address: " + getAddress() + "\n"
@@ -119,6 +136,9 @@ namespace ScottishGlen
 
         private void addAssetBTN_Click(object sender, EventArgs e)
         {
+
+            //Add HW asset
+
             addAssetPanel.Visible = true;
 
             setButtonAccoprdingly("Add");
@@ -138,6 +158,7 @@ namespace ScottishGlen
 
         private void setButtonAccoprdingly(string button)
         {
+            //Sett buttons for HW Panel
             switch (button)
             {
                 case "Add":
@@ -169,6 +190,8 @@ namespace ScottishGlen
 
         private void setButtonSWAccoprdingly(string button)
         {
+            //Sett buttons for SW Panel
+
             switch (button)
             {
                 case "Add":
@@ -196,6 +219,8 @@ namespace ScottishGlen
 
         private void submitNewAssetForm_Click(object sender, EventArgs e)
         {
+            //Adding an Asset (Trigger Function)
+
             scottishGlen newAsset = new scottishGlen();
 
             newAsset.name = iname.Text;
@@ -314,15 +339,24 @@ namespace ScottishGlen
         public string getOSName()
         {
          
-            OperatingSystem os = Environment.OSVersion;
+          //  OperatingSystem os = Environment.Version;
 
-            return os.Platform.ToString();
+          //  return os.Platform.ToString();
+
+            var name = (from x in new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem").Get().OfType<ManagementObject>()
+                        select x.GetPropertyValue("Caption")).FirstOrDefault();
+            return name != null ? name.ToString() : "Unknown";
         }
 
         //get OS Version
         public string getOSVersion()
         {
             OperatingSystem os = Environment.OSVersion;
+
+            if(os.Version == null)
+            {
+                return "Unknown";
+            }
 
             return os.Version.ToString();
 
@@ -334,6 +368,12 @@ namespace ScottishGlen
         {
             OperatingSystem os = Environment.OSVersion;
 
+            if (os == null)
+            {
+                return "Unknown";
+            }
+
+
             return os.ToString();
 
 
@@ -341,6 +381,8 @@ namespace ScottishGlen
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Add asset panel
+
             addAssetPanel.Visible = true;
             ListInformationFromTable(AllData);
             UpdateListView();
@@ -431,7 +473,6 @@ namespace ScottishGlen
         }
 
 
-
         //List Software all info from DB
         void ListSWInformationFromTable(List<scottishGlenSoftware> Glen)
         {
@@ -483,6 +524,58 @@ namespace ScottishGlen
             }
         }
 
+        //List Software all info from DB TO NVD Panel
+        void ListSWInformationFromTableNVD(List<scottishGlenSoftware> Glen)
+        {
+            listView4.Items.Clear();
+            foreach (var g in Glen)
+            {
+                ListViewItem newitem = new ListViewItem(g.id.ToString(), 0);
+
+                //Check if data is null, to prevent errors
+
+                if (g.operatingSystemName != null)
+                {
+                    newitem.SubItems.Add(g.operatingSystemName.ToString());
+                }
+                else
+                {
+                    newitem.SubItems.Add("");
+                }
+
+                if (g.version != null)
+                {
+                    newitem.SubItems.Add(g.version.ToString());
+                }
+                else
+                {
+                    newitem.SubItems.Add("");
+                }
+
+                if (g.manufacturer != null)
+                {
+                    newitem.SubItems.Add(g.manufacturer.ToString());
+                }
+                else
+                {
+                    newitem.SubItems.Add("");
+                }
+
+                if (g.hardwareName != null)
+                {
+                    newitem.SubItems.Add(g.hardwareName.ToString());
+                }
+                else
+                {
+                    newitem.SubItems.Add("");
+                }
+
+
+                listView4.Items.Add(newitem);
+            }
+        }
+
+        //Update which item the user has selected
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0)
@@ -507,11 +600,8 @@ namespace ScottishGlen
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
-
+        //Edit Item
         private void button2_Click(object sender, EventArgs e)
         {
           
@@ -533,7 +623,7 @@ namespace ScottishGlen
             }
         }
 
-
+        //Display item in field
         private void DisplaySelectedItemInField()
         {
             if (listView1.SelectedIndices.Count > 0)
@@ -556,6 +646,7 @@ namespace ScottishGlen
         }
 
 
+        //Display SW item in field
         private void DisplaySWSelectedItemInField()
         {
             if (listView2.SelectedIndices.Count > 0)
@@ -572,6 +663,7 @@ namespace ScottishGlen
         }
 
 
+        //Delete Panel
         private void button3_Click(object sender, EventArgs e)
         {
             setButtonAccoprdingly("Delete");
@@ -579,6 +671,7 @@ namespace ScottishGlen
             addAssetPanel.Visible = true;
         }
 
+        //Updaet trigger funcionality
         private void updatebtn_Click(object sender, EventArgs e)
         {
             int i = (int.Parse(listView1.SelectedItems[0].Text));
@@ -600,6 +693,7 @@ namespace ScottishGlen
 
         }
 
+        //Delete Button Functionality
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             if (listView1.SelectedIndices.Count > 0)
@@ -723,8 +817,6 @@ namespace ScottishGlen
                 hardwarePanel.Visible = true;
                 softwarePanel.Visible = false;
 
-                //int i = (int.Parse(listView1.SelectedItems[0].Text));
-               // scottishGlen inforlookup = (from p in scGlenDB.scottishGlens where p.id == i select p).FirstOrDefault<scottishGlen>();
 
                 scottishGlenSoftware sofwtarelookup = (from p in scGlenDB.scottishGlenSoftwares where p.hardwareName == hwName select p).FirstOrDefault<scottishGlenSoftware>();
 
@@ -799,34 +891,34 @@ namespace ScottishGlen
             UpdateSWListView();
         }
 
+        //Hardware Panel
         private void hardwarebtn_Click(object sender, EventArgs e)
         {
             hardwarePanel.Visible = true;
             softwarePanel.Visible = false;
+            nvdPanel.Visible = false;
         }
 
+
+        //Software Panel
         private void softwarebtn_Click(object sender, EventArgs e)
         {
             hardwarePanel.Visible = false;
             softwarePanel.Visible = true;
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
+            nvdPanel.Visible = false;
 
         }
 
-        //Regsster an Account
+        //Register an Account
         private void registerbtn_Click(object sender, EventArgs e)
         {
+            //All fields must have inputs and password must be >= 8 characters
             if (usernamergst.Text != null && psswdrgst.Text != null && confpsswdrgst.Text != null && psswdrgst.TextLength >= 8 && confpsswdrgst.TextLength >= 8)
             {
 
+                //Password must match
                 if (psswdrgst.Text == confpsswdrgst.Text)
                 {
-
-
-                  
 
                     scottishGlenAccount newAccount = new scottishGlenAccount(); //can also overload the constructor
 
@@ -844,8 +936,6 @@ namespace ScottishGlen
                     scGlenDB.SaveChanges();
 
                     LogIn(usernamergst.Text, hashedpass);
-
-                    MessageBox.Show(hashedpass);
 
                     MessageBox.Show("You Have Successfully Created An Account And Logged In!");
 
@@ -883,20 +973,21 @@ namespace ScottishGlen
 
         //Log In
         private void loginBtn_Click(object sender, EventArgs e)
-        { 
+        {
 
             scottishGlenAccount logged = (from c in scGlenDB.scottishGlenAccounts
                                     where c.username == usernameLog.Text
                                     select c).FirstOrDefault<scottishGlenAccount>();
 
-            string hashedpass = EncryptPassword(passwordLog.Text);
 
             if (logged != null)
             {
+               //Verifiy salted hashed password
+               bool verification = BCrypt.Net.BCrypt.Verify(passwordLog.Text, logged.password);
 
-                if (hashedpass == logged.password.ToString())
+                if (verification)
                 {
-                    LogIn(logged.username, hashedpass);
+                    LogIn(logged.username, logged.password);
 
                     MessageBox.Show("You Have Successfully Logged In!");
                     verificateAccouting();
@@ -905,8 +996,6 @@ namespace ScottishGlen
                 else
                 {
                     MessageBox.Show("Wrong Username or Password!");
-
-                    MessageBox.Show((logged.password + "\n")); //+ (logged.password + "\n"));
                 }
             }
             else
@@ -916,52 +1005,14 @@ namespace ScottishGlen
            
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        //Register Panel
         private void button6_Click_1(object sender, EventArgs e)
         {
             loginPanel.Visible = false;
             registerPanel.Visible = true;
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void confpsswdrgst_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void psswdrgst_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void usernamergst_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        //Sw Panel items
         private void listView2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listView2.SelectedItems.Count > 0)
@@ -986,7 +1037,7 @@ namespace ScottishGlen
             loginPanel.Visible = true;
             registerPanel.Visible = false;
             AccountPanel.Visible = false;
-
+            passchng.Visible = false;
 
         }
 
@@ -1002,42 +1053,14 @@ namespace ScottishGlen
         //Change Password Panel
         private void chgnpssBtn_Click(object sender, EventArgs e)
         {
-            changePassPanel.Visible = true;
+            passchng.Visible = true;
         }
 
 
-        //Change Password Trigger
         private void changepassbtn_Click(object sender, EventArgs e)
         {
 
-            scottishGlenAccount accountlogin = (from c in scGlenDB.scottishGlenAccounts
-                                                where c.username == loggedinAccount.username
-                                                select c).FirstOrDefault<scottishGlenAccount>();
-
-            string hashedpass = EncryptPassword(accountlogin.password);
-            //If current passsword is valid
-            if (currentps.Text == hashedpass)
-            {
-                //Passwords match and are long enough
-                if((newpass.Text == newpasscfrm.Text) && newpass.Text.Length >= 8)
-                {
-                    var hashedpasswrd = EncryptPassword(newpass.Text);
-                    accountlogin.password = hashedpasswrd;
-                    scGlenDB.SaveChanges();
-
-                    MessageBox.Show("Password succesfully changed!");
-
-                }
-                else
-                {
-                    MessageBox.Show("Make sure new password is valid!");
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Current Password is wrong!");
-            }
+          
 
         }
 
@@ -1045,13 +1068,8 @@ namespace ScottishGlen
 
         private string EncryptPassword(string pass)
         {
-            var sha1 = new SHA1CryptoServiceProvider();
-
-            var passwordInBytes = Encoding.ASCII.GetBytes(pass);
-
-            var passwordSHA1Validated = sha1.ComputeHash(passwordInBytes);
-
-            string hashedPassword = Encoding.ASCII.GetString(passwordSHA1Validated);
+            //Salt And Hash Password
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(pass);
 
             return hashedPassword;
         }
@@ -1081,29 +1099,347 @@ namespace ScottishGlen
 
         }
 
-        public void RequestResponse()
+
+        public void RequestResponseFromCurrentPC()
         {
 
-            //This function will be used for testing and working checking vulnerabilities via NIST National Vulnerability Database (NVD)
+            //This function checks vulnerabilities via NIST National Vulnerability Database (NVD)
+
+            try
+            {
+                string osversion = getOSVersion();
+                string os = getOSName();
+                os = os[18] + "" + os[19];
+                string fullparamter = "microsoft:windows_" + os + ":" + osversion;
 
 
-            var client = new RestClient("https://services.nvd.nist.gov/rest/json/cves/2.0");
+                var client = new RestClient("https://services.nvd.nist.gov/rest/json/cves/2.0?cpeName=cpe:2.3:o:" + fullparamter);
 
-            var response = client.Execute(new RestRequest());
+                Console.WriteLine(client.ToString());
 
-            // MessageBox.Show(response.Content);
+                var response = client.Execute(new RestRequest());
 
-
-          //  Console.WriteLine($"hmm { response?.totalResults}");
-           // Console.Write(response.Content.ToString());
+                var jsonString = response.Content;
 
 
-            //var url = "https://services.nvd.nist.gov/rest/json/source/2.0";
-            //var reader = XmlReader.Create(url);
-            //var feed = SyndicationFeed.Load(reader);
+                Rootobject myRootOject = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(jsonString);
 
-            //MessageBox.Show(feed.Items.FirstOrDefault().Title.ToString());
+                List<Vulnerability> vv = new List<Vulnerability>(myRootOject.vulnerabilities);
 
+                ListInformationFromNVD(vv);
+            }
+            catch
+            { }
+
+
+
+        }
+
+        public bool RequestResponseFromCurrentAsset(string OsVersion, string OsName)
+        {
+            //Tries from selected asset from DB, will return false if data inputed is not valid
+
+            bool request = false;
+            //This function checks vulnerabilities via NIST National Vulnerability Database (NVD)
+
+            try
+            {
+                string osversion = OsVersion;
+                string os = OsName;
+                os = os[18] + "" + os[19];
+                string fullparamter = "microsoft:windows_" + os + ":" + osversion;
+
+
+                var client = new RestClient("https://services.nvd.nist.gov/rest/json/cves/2.0?cpeName=cpe:2.3:o:" + fullparamter);
+
+                Console.WriteLine(client.ToString());
+
+                var response = client.Execute(new RestRequest());
+
+                var jsonString = response.Content;
+
+
+                Rootobject myRootOject = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(jsonString);
+
+                List<Vulnerability> vv = new List<Vulnerability>(myRootOject.vulnerabilities);
+
+                ListInformationFromNVD(vv);
+
+                request = true;
+            }
+            catch
+            { request = false; }
+
+            return request;
+
+        }
+
+        public void RequestResponseFromWindows8()
+        {
+
+            //This function checks vulnerabilities via NIST National Vulnerability Database (NVD)
+
+            try
+            {
+                string osVersion = getOSVersion();
+
+                string fullparamter = "microsoft:windows_8" + ":" + osVersion;
+
+
+                var client = new RestClient("https://services.nvd.nist.gov/rest/json/cves/2.0?cpeName=cpe:2.3:o:" + fullparamter);
+
+                Console.WriteLine(client.ToString());
+
+                var response = client.Execute(new RestRequest());
+
+                var jsonString = response.Content;
+
+
+                Rootobject myRootOject = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(jsonString);
+
+                List<Vulnerability> vv = new List<Vulnerability>(myRootOject.vulnerabilities);
+
+                ListInformationFromNVD(vv);
+            }
+            catch { }
+
+        }
+
+        public void RequestResponseFromWindows10()
+        {
+
+            //This function checks vulnerabilities via NIST National Vulnerability Database (NVD)
+
+            try
+            {
+                string osVersion = getOSVersion();
+
+                string fullparamter = "microsoft:windows_10" + ":" + osVersion;
+
+
+                var client = new RestClient("https://services.nvd.nist.gov/rest/json/cves/2.0?cpeName=cpe:2.3:o:" + fullparamter);
+
+                Console.WriteLine(client.ToString());
+
+                var response = client.Execute(new RestRequest());
+
+                var jsonString = response.Content;
+
+
+                Rootobject myRootOject = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(jsonString);
+
+                List<Vulnerability> vv = new List<Vulnerability>(myRootOject.vulnerabilities);
+
+                ListInformationFromNVD(vv);
+            }
+            catch { }
+
+
+
+        }
+
+        public void RequestResponseFromWindows11()
+        {
+
+            //This function checks vulnerabilities via NIST National Vulnerability Database (NVD)
+
+            try
+            {
+                string osVersion = getOSVersion();
+
+                string fullparamter = "microsoft:windows_11" + ":" + osVersion;
+
+                var client = new RestClient("https://services.nvd.nist.gov/rest/json/cves/2.0?cpeName=cpe:2.3:o:" + fullparamter);
+
+                Console.WriteLine(client.ToString());
+
+                var response = client.Execute(new RestRequest());
+
+                var jsonString = response.Content;
+
+
+                Rootobject myRootOject = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(jsonString);
+
+                List<Vulnerability> vv = new List<Vulnerability>(myRootOject.vulnerabilities);
+
+                ListInformationFromNVD(vv);
+            }
+            catch { }
+
+
+
+        }
+        //List all info from DB
+        void ListInformationFromNVD(List<Vulnerability> vv)
+        {
+            listView3.Items.Clear();
+            foreach (var g in vv)
+            {
+                ListViewItem newitem = new ListViewItem(g.cve.id.ToString(), 0);
+
+                //Check if data is null, to prevent errors
+                if (g.cve.sourceIdentifier != null)
+                {
+                    newitem.SubItems.Add(g.cve.sourceIdentifier.ToString());
+                }
+                else
+                {
+                    newitem.SubItems.Add("");
+                }
+
+                if (g.cve.descriptions[0] != null)
+                {
+                    newitem.SubItems.Add(g.cve.descriptions[0].value.ToString());
+                }
+                else
+                {
+                    newitem.SubItems.Add("");
+                }
+
+                if (g.cve.published != null)
+                {
+                    newitem.SubItems.Add(g.cve.published.Date.ToString());
+                }
+                else
+                {
+                    newitem.SubItems.Add("");
+                }
+
+                listView3.Items.Add(newitem);
+            }
+        }
+
+        //get from current pc stats
+        private void button14_Click(object sender, EventArgs e)
+        {
+            RequestResponseFromCurrentPC();
+        }
+
+        //get from windows 11
+        private void button15_Click(object sender, EventArgs e)
+        {
+            RequestResponseFromWindows11();
+        }
+
+        //get from windows 10
+        private void button17_Click(object sender, EventArgs e)
+        {
+            RequestResponseFromWindows10();
+        }
+
+
+        //get from windows 8
+        private void button16_Click(object sender, EventArgs e)
+        {
+            RequestResponseFromWindows8();
+        }
+
+
+        //NVD Panel
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            hardwarePanel.Visible = false;
+            softwarePanel.Visible = false;
+            nvdPanel.Visible = true;
+
+            UpdateSWLNVDistView();
+        }
+
+        //Back Button (Cancel)
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            mmpanel.Visible = true;
+            loginPanel.Visible = false;
+            registerPanel.Visible = false;
+            AccountPanel.Visible = false;
+        }
+
+        //Get from current asset, if data is valid
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (listView4.SelectedIndices.Count > 0)
+            {
+                bool response = false;
+
+                int i = (int.Parse(listView4.SelectedItems[0].Text));
+                scottishGlenSoftware productLookUp = (from p in scGlenDB.scottishGlenSoftwares
+                                                      where p.id == i
+                                                      select p).FirstOrDefault<scottishGlenSoftware>();
+
+
+                response = RequestResponseFromCurrentAsset(productLookUp.version, productLookUp.operatingSystemName);
+
+                if(!response)
+                {
+                    MessageBox.Show("Something went wrong! Maybe data is not valid");
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("You must select an asset");
+            }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AccountPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        //change password
+        private void button12_Click(object sender, EventArgs e)
+        {
+
+
+            scottishGlenAccount accountlogin = (from c in scGlenDB.scottishGlenAccounts
+                                                where c.username == loggedinAccount.username
+                                                select c).FirstOrDefault<scottishGlenAccount>();
+
+
+            bool verification = BCrypt.Net.BCrypt.Verify(currntps.Text, accountlogin.password);
+            //If current passsword is valid
+            if (verification)
+            {
+                //Passwords match and are long enough
+                if ((newpss.Text == newpsscnf.Text) && newpss.Text.Length >= 8)
+                {
+                    var hashedpasswrd = EncryptPassword(newpss.Text);
+                    accountlogin.password = hashedpasswrd;
+                    scGlenDB.SaveChanges();
+
+                    MessageBox.Show("Password succesfully changed!");
+
+                }
+                else
+                {
+                    MessageBox.Show("Make sure new password is valid!");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Current Password is wrong!");
+            }
+        }
+
+        private void cncbttn_Click(object sender, EventArgs e)
+        {
+            passchng.Visible = false;
+        }
+
+        private void passchng_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }
