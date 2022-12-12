@@ -84,6 +84,7 @@ namespace ScottishGlen
             this.label1 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -104,26 +105,27 @@ namespace ScottishGlen
             this.mmpanel = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.accountbtn = new System.Windows.Forms.Button();
-            this.AccountPanel = new System.Windows.Forms.Panel();
-            this.chgnpssBtn = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.logtoutBtn = new System.Windows.Forms.Button();
+            this.registerPanel = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.loginPanel = new System.Windows.Forms.Panel();
             this.loginHeader = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.loginBtn = new System.Windows.Forms.Button();
             this.passwordLog = new System.Windows.Forms.TextBox();
             this.usernameLog = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.registerPanel = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.confpsswdrgst = new System.Windows.Forms.TextBox();
             this.registerbtn = new System.Windows.Forms.Button();
             this.psswdrgst = new System.Windows.Forms.TextBox();
             this.usernamergst = new System.Windows.Forms.TextBox();
+            this.AccountPanel = new System.Windows.Forms.Panel();
+            this.cnclaccount = new System.Windows.Forms.Button();
+            this.chgnpssBtn = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.logtoutBtn = new System.Windows.Forms.Button();
             this.changePassPanel = new System.Windows.Forms.Panel();
             this.cancelPssChng = new System.Windows.Forms.Button();
             this.ChangePassHeader = new System.Windows.Forms.Label();
@@ -152,9 +154,9 @@ namespace ScottishGlen
             this.softwarePanel.SuspendLayout();
             this.addAssetPanel2.SuspendLayout();
             this.mmpanel.SuspendLayout();
-            this.AccountPanel.SuspendLayout();
-            this.loginPanel.SuspendLayout();
             this.registerPanel.SuspendLayout();
+            this.loginPanel.SuspendLayout();
+            this.AccountPanel.SuspendLayout();
             this.changePassPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.passchng.SuspendLayout();
@@ -436,7 +438,7 @@ namespace ScottishGlen
             this.hardwarePanel.Controls.Add(this.button1);
             this.hardwarePanel.Controls.Add(this.button3);
             this.hardwarePanel.Controls.Add(this.button2);
-            this.hardwarePanel.Location = new System.Drawing.Point(46, 66);
+            this.hardwarePanel.Location = new System.Drawing.Point(3, 98);
             this.hardwarePanel.Name = "hardwarePanel";
             this.hardwarePanel.Size = new System.Drawing.Size(1245, 461);
             this.hardwarePanel.TabIndex = 11;
@@ -452,7 +454,7 @@ namespace ScottishGlen
             this.nvdPanel.Controls.Add(this.button15);
             this.nvdPanel.Controls.Add(this.button16);
             this.nvdPanel.Controls.Add(this.button17);
-            this.nvdPanel.Location = new System.Drawing.Point(23, 82);
+            this.nvdPanel.Location = new System.Drawing.Point(0, 66);
             this.nvdPanel.Name = "nvdPanel";
             this.nvdPanel.Size = new System.Drawing.Size(1246, 561);
             this.nvdPanel.TabIndex = 12;
@@ -605,7 +607,7 @@ namespace ScottishGlen
             this.softwarePanel.Controls.Add(this.addAssetPanel2);
             this.softwarePanel.Controls.Add(this.button9);
             this.softwarePanel.Controls.Add(this.button10);
-            this.softwarePanel.Location = new System.Drawing.Point(11, 97);
+            this.softwarePanel.Location = new System.Drawing.Point(0, 130);
             this.softwarePanel.Name = "softwarePanel";
             this.softwarePanel.Size = new System.Drawing.Size(1261, 393);
             this.softwarePanel.TabIndex = 12;
@@ -635,6 +637,7 @@ namespace ScottishGlen
             // listView2
             // 
             this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader14,
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
@@ -647,6 +650,10 @@ namespace ScottishGlen
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
             this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "Id";
             // 
             // columnHeader1
             // 
@@ -807,12 +814,12 @@ namespace ScottishGlen
             this.mmpanel.Controls.Add(this.button7);
             this.mmpanel.Controls.Add(this.accountbtn);
             this.mmpanel.Controls.Add(this.nvdPanel);
+            this.mmpanel.Controls.Add(this.softwarePanel);
             this.mmpanel.Controls.Add(this.softwarebtn);
             this.mmpanel.Controls.Add(this.hardwarePanel);
-            this.mmpanel.Controls.Add(this.softwarePanel);
             this.mmpanel.Controls.Add(this.hardwarebtn);
             this.mmpanel.Controls.Add(this.pcinfo);
-            this.mmpanel.Location = new System.Drawing.Point(12, 75);
+            this.mmpanel.Location = new System.Drawing.Point(3, 80);
             this.mmpanel.Name = "mmpanel";
             this.mmpanel.Size = new System.Drawing.Size(1294, 611);
             this.mmpanel.TabIndex = 15;
@@ -838,56 +845,39 @@ namespace ScottishGlen
             this.accountbtn.UseVisualStyleBackColor = true;
             this.accountbtn.Click += new System.EventHandler(this.accountbtn_Click);
             // 
-            // AccountPanel
+            // registerPanel
             // 
-            this.AccountPanel.Controls.Add(this.chgnpssBtn);
-            this.AccountPanel.Controls.Add(this.label7);
-            this.AccountPanel.Controls.Add(this.label10);
-            this.AccountPanel.Controls.Add(this.logtoutBtn);
-            this.AccountPanel.Location = new System.Drawing.Point(631, 22);
-            this.AccountPanel.Name = "AccountPanel";
-            this.AccountPanel.Size = new System.Drawing.Size(352, 382);
-            this.AccountPanel.TabIndex = 27;
-            this.AccountPanel.Visible = false;
-            this.AccountPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.AccountPanel_Paint);
+            this.registerPanel.Controls.Add(this.label6);
+            this.registerPanel.Controls.Add(this.label5);
+            this.registerPanel.Controls.Add(this.label4);
+            this.registerPanel.Controls.Add(this.label2);
+            this.registerPanel.Controls.Add(this.confpsswdrgst);
+            this.registerPanel.Controls.Add(this.registerbtn);
+            this.registerPanel.Controls.Add(this.psswdrgst);
+            this.registerPanel.Controls.Add(this.usernamergst);
+            this.registerPanel.Location = new System.Drawing.Point(18, 54);
+            this.registerPanel.Name = "registerPanel";
+            this.registerPanel.Size = new System.Drawing.Size(375, 382);
+            this.registerPanel.TabIndex = 20;
+            this.registerPanel.Visible = false;
             // 
-            // chgnpssBtn
+            // label6
             // 
-            this.chgnpssBtn.Location = new System.Drawing.Point(100, 141);
-            this.chgnpssBtn.Name = "chgnpssBtn";
-            this.chgnpssBtn.Size = new System.Drawing.Size(140, 34);
-            this.chgnpssBtn.TabIndex = 27;
-            this.chgnpssBtn.Text = "Change Password";
-            this.chgnpssBtn.UseVisualStyleBackColor = true;
-            this.chgnpssBtn.Click += new System.EventHandler(this.chgnpssBtn_Click);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(89, 18);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(202, 56);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Register";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
-            // label7
+            // label5
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(91, 11);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(179, 51);
-            this.label7.TabIndex = 26;
-            this.label7.Text = "Account";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(59, 100);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(0, 17);
-            this.label10.TabIndex = 21;
-            // 
-            // logtoutBtn
-            // 
-            this.logtoutBtn.Location = new System.Drawing.Point(100, 195);
-            this.logtoutBtn.Name = "logtoutBtn";
-            this.logtoutBtn.Size = new System.Drawing.Size(140, 34);
-            this.logtoutBtn.TabIndex = 19;
-            this.logtoutBtn.Text = "Log Out";
-            this.logtoutBtn.UseVisualStyleBackColor = true;
-            this.logtoutBtn.Click += new System.EventHandler(this.logtoutBtn_Click);
+            this.label5.Location = new System.Drawing.Point(107, 139);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(158, 23);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Enter a Password";
             // 
             // loginPanel
             // 
@@ -896,7 +886,7 @@ namespace ScottishGlen
             this.loginPanel.Controls.Add(this.loginBtn);
             this.loginPanel.Controls.Add(this.passwordLog);
             this.loginPanel.Controls.Add(this.usernameLog);
-            this.loginPanel.Location = new System.Drawing.Point(12, 48);
+            this.loginPanel.Location = new System.Drawing.Point(6, 62);
             this.loginPanel.Name = "loginPanel";
             this.loginPanel.Size = new System.Drawing.Size(375, 319);
             this.loginPanel.TabIndex = 16;
@@ -949,40 +939,6 @@ namespace ScottishGlen
             this.usernameLog.TabIndex = 17;
             this.usernameLog.Text = "Username";
             this.usernameLog.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(107, 139);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(158, 23);
-            this.label5.TabIndex = 26;
-            this.label5.Text = "Enter a Password";
-            // 
-            // registerPanel
-            // 
-            this.registerPanel.Controls.Add(this.label6);
-            this.registerPanel.Controls.Add(this.label5);
-            this.registerPanel.Controls.Add(this.label4);
-            this.registerPanel.Controls.Add(this.label2);
-            this.registerPanel.Controls.Add(this.confpsswdrgst);
-            this.registerPanel.Controls.Add(this.registerbtn);
-            this.registerPanel.Controls.Add(this.psswdrgst);
-            this.registerPanel.Controls.Add(this.usernamergst);
-            this.registerPanel.Location = new System.Drawing.Point(15, 56);
-            this.registerPanel.Name = "registerPanel";
-            this.registerPanel.Size = new System.Drawing.Size(375, 382);
-            this.registerPanel.TabIndex = 20;
-            this.registerPanel.Visible = false;
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(89, 18);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(202, 56);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Register";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label4
             // 
@@ -1038,6 +994,68 @@ namespace ScottishGlen
             this.usernamergst.TabIndex = 21;
             this.usernamergst.Text = "Username";
             this.usernamergst.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // AccountPanel
+            // 
+            this.AccountPanel.Controls.Add(this.cnclaccount);
+            this.AccountPanel.Controls.Add(this.chgnpssBtn);
+            this.AccountPanel.Controls.Add(this.label7);
+            this.AccountPanel.Controls.Add(this.label10);
+            this.AccountPanel.Controls.Add(this.logtoutBtn);
+            this.AccountPanel.Location = new System.Drawing.Point(638, 29);
+            this.AccountPanel.Name = "AccountPanel";
+            this.AccountPanel.Size = new System.Drawing.Size(352, 382);
+            this.AccountPanel.TabIndex = 27;
+            this.AccountPanel.Visible = false;
+            this.AccountPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.AccountPanel_Paint);
+            // 
+            // cnclaccount
+            // 
+            this.cnclaccount.Location = new System.Drawing.Point(100, 250);
+            this.cnclaccount.Name = "cnclaccount";
+            this.cnclaccount.Size = new System.Drawing.Size(140, 34);
+            this.cnclaccount.TabIndex = 28;
+            this.cnclaccount.Text = "Cancel";
+            this.cnclaccount.UseVisualStyleBackColor = true;
+            this.cnclaccount.Click += new System.EventHandler(this.cnclaccount_Click);
+            // 
+            // chgnpssBtn
+            // 
+            this.chgnpssBtn.Location = new System.Drawing.Point(100, 141);
+            this.chgnpssBtn.Name = "chgnpssBtn";
+            this.chgnpssBtn.Size = new System.Drawing.Size(140, 34);
+            this.chgnpssBtn.TabIndex = 27;
+            this.chgnpssBtn.Text = "Change Password";
+            this.chgnpssBtn.UseVisualStyleBackColor = true;
+            this.chgnpssBtn.Click += new System.EventHandler(this.chgnpssBtn_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(91, 11);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(179, 51);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "Account";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(59, 100);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(0, 17);
+            this.label10.TabIndex = 21;
+            // 
+            // logtoutBtn
+            // 
+            this.logtoutBtn.Location = new System.Drawing.Point(100, 195);
+            this.logtoutBtn.Name = "logtoutBtn";
+            this.logtoutBtn.Size = new System.Drawing.Size(140, 34);
+            this.logtoutBtn.TabIndex = 19;
+            this.logtoutBtn.Text = "Log Out";
+            this.logtoutBtn.UseVisualStyleBackColor = true;
+            this.logtoutBtn.Click += new System.EventHandler(this.logtoutBtn_Click);
             // 
             // changePassPanel
             // 
@@ -1265,15 +1283,15 @@ namespace ScottishGlen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1872, 1055);
+            this.ClientSize = new System.Drawing.Size(1390, 703);
+            this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.passchng);
             this.Controls.Add(this.AccountPanel);
             this.Controls.Add(this.registerPanel);
-            this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.mmpanel);
             this.Controls.Add(this.initialTitle);
             this.Controls.Add(this.addAssetPanelLabel);
-            ////this.Name = "Form1";
+            //this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.addAssetPanel.ResumeLayout(false);
@@ -1288,12 +1306,12 @@ namespace ScottishGlen
             this.addAssetPanel2.PerformLayout();
             this.mmpanel.ResumeLayout(false);
             this.mmpanel.PerformLayout();
-            this.AccountPanel.ResumeLayout(false);
-            this.AccountPanel.PerformLayout();
-            this.loginPanel.ResumeLayout(false);
-            this.loginPanel.PerformLayout();
             this.registerPanel.ResumeLayout(false);
             this.registerPanel.PerformLayout();
+            this.loginPanel.ResumeLayout(false);
+            this.loginPanel.PerformLayout();
+            this.AccountPanel.ResumeLayout(false);
+            this.AccountPanel.PerformLayout();
             this.changePassPanel.ResumeLayout(false);
             this.changePassPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
@@ -1422,6 +1440,8 @@ namespace ScottishGlen
         private System.Windows.Forms.TextBox newpss;
         private System.Windows.Forms.TextBox currntps;
         private System.Windows.Forms.Button cncbttn;
+        private System.Windows.Forms.Button cnclaccount;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
     }
 }
 

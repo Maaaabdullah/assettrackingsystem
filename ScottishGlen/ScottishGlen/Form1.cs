@@ -716,6 +716,8 @@ namespace ScottishGlen
         //Add Software INFO
         private void button4_Click(object sender, EventArgs e)
         {
+            addSfowtareTrigger = false;
+
             addAssetPanel2.Visible = true;
 
             setButtonSWAccoprdingly("Add");
@@ -924,8 +926,6 @@ namespace ScottishGlen
 
 
                     string hashedpass = EncryptPassword(psswdrgst.Text);
-
-                    hashedpass = hashedpass.ToString();
 
                     newAccount.username = usernamergst.Text;
                     newAccount.password = hashedpass;
@@ -1441,6 +1441,13 @@ namespace ScottishGlen
         private void passchng_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        //Cancel Account Panel (Back)
+        private void cnclaccount_Click(object sender, EventArgs e)
+        {
+            mmpanel.Visible = true;
+            AccountPanel.Visible = false;
         }
     }
 
