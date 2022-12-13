@@ -38,6 +38,7 @@ namespace ScottishGlen
         bool addSfowtareTrigger = false;
         string hwName = null;
         int lastId = 0;
+        int lastSofwtareId = 0;
 
 
         public Form1()
@@ -744,8 +745,7 @@ namespace ScottishGlen
 
             if (listView2.SelectedIndices.Count > 0)
             {
-                int i = (int.Parse(listView2.SelectedItems[0].Text));
-                scottishGlenSoftware inforlookup = (from p in scGlenDB.scottishGlenSoftwares where p.id == i select p).FirstOrDefault<scottishGlenSoftware>();
+                scottishGlenSoftware inforlookup = (from p in scGlenDB.scottishGlenSoftwares where p.id == lastSofwtareId select p).FirstOrDefault<scottishGlenSoftware>();
                
                 //Edit Item
                 UpdateSWListView();
@@ -845,11 +845,8 @@ namespace ScottishGlen
             if (listView2.SelectedIndices.Count > 0)
             {
                 int i = (int.Parse(listView2.SelectedItems[0].Text));
-                scottishGlenSoftware inforlookup = (from p in scGlenDB.scottishGlenSoftwares where p.id == i select p).FirstOrDefault<scottishGlenSoftware>();
+                scottishGlenSoftware inforlookup = (from p in scGlenDB.scottishGlenSoftwares where p.id == lastSofwtareId select p).FirstOrDefault<scottishGlenSoftware>();
 
-                inamesw.Text = inforlookup.operatingSystemName;
-                iversionsw.Text = inforlookup.version;
-                imanusw.Text = inforlookup.manufacturer;
 
                 inforlookup.operatingSystemName = inamesw.Text;
                 inforlookup.version = iversionsw.Text;
@@ -1022,6 +1019,8 @@ namespace ScottishGlen
                 string name = AllSWData[listView2.SelectedIndices[0]].operatingSystemName;
                 string model = AllSWData[listView2.SelectedIndices[0]].version;
                 string manufacturer = AllSWData[listView2.SelectedIndices[0]].manufacturer;
+
+                lastSofwtareId = (int.Parse(listView2.SelectedItems[0].Text));
 
 
             }
